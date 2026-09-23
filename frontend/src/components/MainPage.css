@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+.border {
+    border: 1px solid red;
+}
+
+.hero {
+    min-height: calc(100vh - 40px);
+     display: flex;
+     align-items: flex-start;
+     padding: 50px 100px;
+    
+}
+
+.tracking {
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+     background-color: #F0F0F9;
+     color: #63637A;
+    padding: 5px 5px;
+    border-radius: 15px;
+    text-align: center;
+    width: 50%;
+    font-size: 12px;
+}
+.hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.hero a {
+    padding: 15px 30px;
+    background-color: #6D4AFF;
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    border-radius: 10px;
+}
+
+.header-h1 {
+    margin-bottom: 20px;
+}
+
+.hired {
+     color: #6D4AFF;
+   
+}
+
+.description {
+    margin-bottom: 40px;
+}
+
+.description p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #63637A;
+}
+
+.banner {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 15px;
+   box-shadow:
+    0 20px 50px rgba(109, 74, 255, 0.30),
+    0 10px 25px rgba(109, 74, 255, 0.20);
+}
+
+.left-width {
+    width: 70%;
+    margin-top: 20px;
+}
+.width {
+    width: 100%;
+    padding: 10px;
+}
+
+.loved {
+    margin-top: 30px;
+    font-family: 'Inter', sans-serif;
+    color: #63637A;
+    font-size: 12px;
+}
