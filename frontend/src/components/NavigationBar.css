@@ -1,62 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.border {
-    border: 1px solid red;
-}
-
-.main-nav {
+nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding: 20px;
 }
 
-.main-nav h1 {
-    margin-right: auto;
-    font-family: 'Inter', sans-serif;
-   
-}
-
-.main-nav h1 span {
-   color: #6D4AFF;
-}
-
-.main-nav a {
-    margin-left: auto;
-}
-
-.main-nav ul {
+nav ul {
     display: flex;
-    gap: 35px;
-    list-style: none;
-  
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
 }
 
-.main-nav ul li a{
-    text-decoration: none;
+nav ul li {
+    list-style: none;
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: rgb(113, 111, 111);
+    font-weight: 500;
+}
+nav header {
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
     font-weight: 600;
 }
 
-.main-nav ul li a:hover {
-    color: #6D4AFF;
+nav button {
+    width: 120px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    background-color: rgb(118, 118, 247);
 }
 
-.button-log {
-    font-family: 'Inter', sans-serif;
-    text-decoration: none;
-    background-color: #6D4AFF;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 10px;
+@media (max-width: 767px) {
+    nav {
+        display: none;
+    }
 }

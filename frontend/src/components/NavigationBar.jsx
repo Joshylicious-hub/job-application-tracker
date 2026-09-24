@@ -6,15 +6,15 @@ function NavigationBar() {
     return (
         <>
 
-        <nav className="main-nav">
-            <h1>JobTrack <span>AI</span></h1>
+        <nav>
+            <header>JobTrack AI</header>
             <ul>
+                <li><a>Home</a></li>
                 <li><a>Features</a></li>
-                <li><a>How it Works</a></li>
-                <li><a>Benefits</a></li>
-                <li><a>FAQ</a></li>
+                <li><a>How It Works</a></li>
+                <li><a>About</a></li>
             </ul>
-            <Link className="button-log" to="/login">Log in</Link>
+            <button>Log In</button>
         </nav>
         
         </>

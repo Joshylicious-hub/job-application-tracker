@@ -1,5 +1,6 @@
 import NavigationBar from '../components/NavigationBar';
 import MainPage from '../components/MainPage';
+import Footer from '../components/Footer';
 
 function LandingPage() {
     
@@ -8,6 +9,7 @@ function LandingPage() {
         <>
         <NavigationBar/>
         <MainPage/>
+        <Footer/>
         </>
     )
 }
