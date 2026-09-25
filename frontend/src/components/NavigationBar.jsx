@@ -150,7 +150,7 @@ function NavigationBar() {
             </div>
         )}
 
-        <button onClick={openSideBar} className="side-bar-burger"><span>☰</span></button>
+        <button onClick={openSideBar}  className={`side-bar-burger ${triggerModal ? "hide-burger" : ""}`}><span>☰</span></button>
 
         {sideBar && (
         <>
