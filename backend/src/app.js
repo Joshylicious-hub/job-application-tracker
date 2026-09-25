@@ -14,7 +14,7 @@ const path = require('path');
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-    origin: 'https://job-application-tracker-six-iota-21.vercel.app',
+    origin: 'http://localhost:5173',
     credentials: true
 }));
 app.use('/uploads', express.static('uploads'));

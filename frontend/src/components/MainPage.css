@@ -377,7 +377,7 @@
     font-weight: 500;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .content {
         width: 100%;
         height: auto;
@@ -449,6 +449,130 @@
     .platform-features {
         gap: 30px;
         flex-direction: column;
+    }
+    .simple-steps-container {
+        flex-direction: column;
+    }   
+    .steps-container {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .steps-headers h6 {
+        text-align: center;
+    }
+    .steps-headers h1 {
+        text-align: center;
+    }
+    .job-container {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .application-description h6 {
+        text-align: center;
+    }
+    .application-description h1 {
+        text-align: center;
+    }
+    .combine {
+        text-align: center;
+    }
+    .testimonial-container {
+        height: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .review-container {
+        flex-direction: column;
+    }
+    .get-started {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .content {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .content-container {
+        padding-top: 50px;
+        align-items: center;
+        padding-bottom: 50px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .get-started-free {
+        text-align: center;
+        font-size: 12px;
+    }
+    .learn-more-button {
+        text-align: center;
+        font-size: 12px;
+    }
+    .ai-features {
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 20px;
+    }
+    .ai-features p {
+        text-align: center;
+    }
+    .banner-title h1 {
+        text-align: center;
+    }
+    .banner-description p {
+        text-align: center;
+    }
+    
+    .links-button {
+        justify-content: center;
+    }
+    .dashboard-img-container {
+        display: none;
+    }
+    .dashboard-img {
+        width: 100%;
+        max-width: 400px;
+    }
+    .features-container {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .features-header {
+        text-align: center;
+    }
+    .features-h1 h1 {
+        text-align: center;
+    }
+    .features-des {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .platform-features {
+        gap: 30px;
+        flex-direction: column;
+    }
+    .steps-img {
+        height: auto;
     }
     .simple-steps-container {
         flex-direction: column;
