@@ -361,10 +361,12 @@ aside {
     .login-container {
          z-index: 9999;
          height: 100vh;
+         border-radius: 0;
     }
     .register-container {
         z-index: 9999;
         height: 100vh;
+        border-radius: 0;
     }
     nav {
         display: none;
