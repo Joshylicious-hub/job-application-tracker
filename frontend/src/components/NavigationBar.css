@@ -360,6 +360,11 @@ aside {
 @media (max-width: 767px) {
     .login-container {
          z-index: 9999;
+         height: 100vh;
+    }
+    .register-container {
+        z-index: 9999;
+        height: 100vh;
     }
     nav {
         display: none;
