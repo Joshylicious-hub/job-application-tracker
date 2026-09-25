@@ -9,9 +9,7 @@ function NavigationBar() {
     
     const [ triggerModal, setTriggerModal ] = useState(false);
     
-    const openModal = (e) => {
-
-        e.preventDefault();
+    const openModal = () => {
 
         if(triggerModal === false) {
             setTriggerModal(true);
@@ -72,6 +70,18 @@ function NavigationBar() {
         }finally {
             console.log('Request has been sent.');
         }
+    }
+
+    const openModalMobile = () => {
+
+            if(triggerModal === false) {
+                setTriggerModal(true);
+                setSideBar(false);
+                return;
+            }
+
+            setTriggerModal(false);
+            
     }
 
     return (
@@ -145,7 +155,7 @@ function NavigationBar() {
         {sideBar && (
         <>
         <div className="background-side" onClick={openSideBar}>
-            <aside>
+            <aside onClick={(e) => e.stopPropagation()}>
                 <header>JobTrack AI</header>
                 <ul>
                     <li><span>❯</span><a>Home</a></li>
@@ -153,7 +163,7 @@ function NavigationBar() {
                     <li><span>❯</span><a>How It Works</a></li>
                     <li><span>❯</span><a>About</a></li>
                 </ul>
-                <button>Log In</button>
+                <button onClick={openModalMobile}>Log In</button>
             </aside>
         </div>
         </>
