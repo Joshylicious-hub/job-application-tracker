@@ -7,18 +7,6 @@ function NavigationBar() {
 
     const navigate = useNavigate();
     
-    const [ triggerModal, setTriggerModal ] = useState(false);
-    
-    const openModal = () => {
-
-        if(triggerModal === false) {
-            setTriggerModal(true);
-            return;
-        }
-
-        setTriggerModal(false);
-    }
-    
     const [ sideBar, setSideBar ] = useState(false);
 
     const openSideBar = () => {
@@ -84,6 +72,34 @@ function NavigationBar() {
             
     }
 
+    const [ triggerModal, setTriggerModal ] = useState(false);
+    
+    const openModal = () => {
+
+        if(triggerModal === false) {
+            setTriggerModal(true);
+            setOpenRegister(false);
+            return;
+        }
+
+        setTriggerModal(false);
+    }
+
+    const [ openRegister, setOpenRegister ] = useState(false);
+
+    const registerModal = () => {
+
+        if(openRegister === false) {
+            setOpenRegister(true);
+            setTriggerModal(false);
+            return;
+        }
+
+        setOpenRegister(false);
+    }
+
+   
+
     return (
         <>
 
@@ -144,13 +160,84 @@ function NavigationBar() {
                     </form>
                     <div className="register-account">
                         <p>Don't have an account?</p>
-                        <button>Get Started Free</button>
+                        <button onClick={registerModal}>Get Started Free</button>
                     </div>
                 </div>
             </div>
         )}
 
-        <button onClick={openSideBar}  className={`side-bar-burger ${triggerModal ? "hide-burger" : ""}`}><span>☰</span></button>
+        {openRegister && (
+            <div className="register-modal-background" onClick={registerModal}>
+                <div className="register-container" onClick={(e) => e.stopPropagation()}>
+                    <div className="register-header-container">
+                        <header>JobTrack AI</header>
+                        <button onClick={registerModal}>X</button>
+                    </div>
+                    <div className="welcome-container">
+                        <h2>Create your account</h2>
+                        <p>Start matching your resume to real opportunities</p>
+                    </div>
+                    <Link className="google-button">
+                    <FcGoogle size={24} />
+                    Continue with Google
+                    </Link>
+                    <div class="divider">
+                        <div class="line"></div>
+                        <span>or</span>
+                        <div class="line"></div>
+                    </div>
+                    <form className="register-form" onSubmit={sendLogin}>
+                        <div className="name-container">
+                            <div className="user-name">
+                                <label>First name</label>
+                                <input
+                                type="text"
+                                placeholder='Example Adolf'
+                                />
+                            </div>
+                            <div className="user-name">
+                                <label>Last name</label>
+                                <input
+                                type="text"
+                                placeholder='Example Hitler'
+                                />
+                            </div>
+                        </div>
+                        <div className="input-container">
+                            <label>Email</label>
+                            <input
+                            type="email"
+                            className="input-style"
+                            placeholder="user@gmail.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            />
+                        </div>
+                        
+                        <div className="input-container">
+                            <label>Password</label>
+                            <input
+                            type="password"
+                            className="input-style"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            minLength={8}
+                            />
+                            <p>Use at least 8 characters.</p>
+                        </div>
+                        <button type="submit">Register</button>
+                    </form>
+                    <div className="login-account">
+                        <p>Already have an account?</p>
+                        <button onClick={openModal}>Log in</button>
+                    </div>
+                </div>
+            </div>
+        )}
+
+        <button onClick={openSideBar}  className={`side-bar-burger ${triggerModal || openRegister ? "hide-burger" : ""}`}><span>☰</span></button>
 
         {sideBar && (
         <>

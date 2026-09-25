@@ -207,6 +207,155 @@ aside {
     cursor: pointer;
 }
 
+.name-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-modal-background {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+}
+
+.register-container {
+    background-color: white;
+    padding: 25px 50px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+   
+}
+
+.register-header-container button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+     border: 1px solid rgba(127, 119, 221, 0.25);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 8px 20px -6px rgba(90, 71, 221, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.register-header-container button:hover {
+    background: rgba(243, 241, 255, 0.9);
+    box-shadow:
+        0 10px 24px -6px rgba(90, 71, 221, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+}
+.register-header-container button:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.register-header-container header {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+.register-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.input-style {
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1.3px solid #d8d5e8;
+}
+
+.input-container label {
+     font-family: 'Poppins', sans-serif;
+     color: black;
+    font-weight: 500;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.input-container p {
+    font-size: 14px;
+}
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.register-form button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    color: white;
+    background-color: rgb(118, 118, 247);
+    cursor: pointer;
+}
+.login-account {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.login-account p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: rgba(20, 18, 31, 0.495);
+    font-weight: 400;
+}
+
+.login-account button {
+    border: none;
+    background-color: transparent;
+    color: rgb(118, 118, 247);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.user-name {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-name {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-weight: 500;
+}
+
+.user-name input {
+    padding-left: 10px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1.3px solid #d8d5e8;
+}
+
 
 @media (max-width: 767px) {
     .login-container {
