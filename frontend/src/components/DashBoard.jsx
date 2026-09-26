@@ -56,38 +56,108 @@ useEffect(() => {
     getUserName();
 }, [])
 
-useEffect(() => {
 
-    async function getApplications() {
-        
-        try {
+async function getApplications() {
+    
+    try {
 
-            const response = await fetch('http://localhost:3000/api/user/application', {
-                credentials: "include"
-            });
+        const response = await fetch('http://localhost:3000/api/user/application', {
+            credentials: "include"
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            if(!response.ok) {
-                console.log(data.message);
-                return;
-            }
-
-            setApplication(data);
-
-        }catch(err) {
-            console.error(err.message);
+        if(!response.ok) {
+            console.log(data.message);
+            return;
         }
+
+        setApplication(data);
+
+    }catch(err) {
+        console.error(err.message);
     }
+}
 
-    getApplications();
+useEffect(() => {
+     getApplications();
+})
+   
 
-}, []);
 
 const capitalize = (name) => {
     if (!name) return "";
     return name.charAt(0).toUpperCase() + name.slice(1);
 };
+
+const [ applicationModal, setApplicationModal ] = useState(false);
+
+const openApplication = () => {
+
+    if(applicationModal === false) {
+        setApplicationModal(true);
+        return;
+    }
+
+    setApplicationModal(false);
+
+}
+
+const [ company, setCompany ] = useState("");
+const [ position, setPosition ] = useState("");
+const [ status, setStatus ] = useState("Pending");
+const [ dateApplied, setDateApplied ] = useState("");
+const [ step, setStep ] = useState("Not Available");
+const [ applicationSucess, setApplicationSuccess ] = useState("");
+const [ applicationError, setApplicationError ] = useState("");
+
+const sendApplication = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+        if(!company || !position || !status || !dateApplied || !step) {
+            setApplicationError("Please complete the fields to continue");
+            return;
+        }
+
+        setCompany("")
+        setPosition("");
+        setStatus("Pending");
+        setDateApplied("");
+        setStep("Not Available");
+
+        const response = await fetch('http://localhost:3000/api/user/insertApplication', {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                company: company,
+                position: position,
+                status: status,
+                dateApplied: dateApplied,
+                step: step
+            })
+        })
+
+        const data = await response.json();
+        
+
+        if(!response.ok) {
+            setApplicationError(data.message);
+            return;
+        }
+
+        setApplicationSuccess(data.message);
+        getApplications();
+
+    }catch(err) {
+        setApplicationError(err.message);
+    }
+}
 
     return (
         <>
@@ -101,10 +171,94 @@ const capitalize = (name) => {
                         <p>Here's what happening with your job search today.</p>
                     </div>
                     <div className="profile-container">
-                        <Link>+ Add Application</Link>
+                        <button onClick={openApplication}>+ Add Application</button>
                         <img src={joshuagrad} className="picture"/>
                     </div>
                    </div>
+
+                   {applicationModal && (
+
+                    <div className="application-background" onClick={openApplication}>
+                        <div className="application-container-modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="application-container">
+                                <div className="application-header-container">
+                                    <h2>New Application</h2>
+                                    <p>Add the details of your job application</p>
+                                </div>
+                                <div>
+                                    <button className="exit-application" onClick={openApplication}>X</button>
+                                </div>
+                            </div>
+
+                             <form onSubmit={sendApplication}>
+                                <fieldset>
+                                    <legend>Company</legend>
+                                    <input
+                                    type="text"
+                                    placeholder='Accenture'
+                                    value={company}
+                                    onChange={(e) => setCompany(e.target.value)}
+                                    />
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Position</legend>
+                                    <input
+                                    type="text"
+                                    placeholder="Software Engineer"
+                                    value={position}
+                                    onChange={(e) => setPosition(e.target.value)}
+                                    />
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Status</legend>
+                                    <select
+                                    value={status}
+                                    onChange={(e) => setStatus(e.target.value)}
+                                    >
+                                        <option value="Pending">Pending</option>
+                                        <option value="Interview">Interview</option>
+                                        <option value="Offered">Offered</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Date Applied</legend>
+                                    <input
+                                    type="date"
+                                    value={dateApplied}
+                                    onChange={(e) => setDateApplied(e.target.value)}
+                                    />
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Next Step</legend>
+                                    <select
+                                    value={step}
+                                    onChange={(e) => setStep(e.target.value)}
+                                    >
+                                        <option value="Not Available">Not Available</option>
+                                        <option value="HR Interview">HR Intervew</option>
+                                        <option value="Technical Interview">Technical Interview</option>
+                                        <option value="Final Interview">Final Interview</option>
+                                    </select>
+                                </fieldset>
+
+                                <p className={applicationError ? "application-error" : "application-success"}>
+                                    {applicationError || applicationSucess}
+                                </p>
+
+                                <div className="application-buttons">
+                                    <button className="application-cancel">Cancel</button>
+                                    <button type="submit" className="application-save">Save Application</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                   )}
 
                  <div className="statistics-container">
                    <div className="border card-container">

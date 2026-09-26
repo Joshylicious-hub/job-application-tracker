@@ -132,6 +132,21 @@ async function applicationDB(req, res) {
     }
 }
 
+async function insertApplicationDB(req, res) {
+
+    const id = req.user.id;
+
+    const { company, position, status, dateApplied, step} = req.body;
+
+    const [result] = await db.query("INSERT INTO applications (foreign_id, company, position, status, date, step) VALUES (?, ?, ?, ?, ?, ?)", 
+        [ id, company, position, status, dateApplied, step]
+    );
+
+    res.status(201).json({
+        message: `${result.affectedRows} application has been recorded.`
+    })
+}
+
 module.exports = {
-    loginDB, registerDB, profileDB, applicationDB
+    loginDB, registerDB, profileDB, applicationDB, insertApplicationDB
 };

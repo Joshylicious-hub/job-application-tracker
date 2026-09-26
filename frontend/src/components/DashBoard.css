@@ -120,8 +120,10 @@ align-items: center;
 gap: 18px;
 }
 
-.profile-container a {
+.profile-container button {
 padding: 11px 18px;
+border: none;
+cursor: pointer;
 background-color: #6d4aff;
 color: white;
 text-decoration: none;
@@ -132,7 +134,7 @@ transition: 0.2s;
 box-shadow: 0 4px 12px rgba(109, 74, 255, 0.20);
 }
 
-.profile-container a:hover {
+.profile-container button:hover {
 background-color: #5b3de0;
 transform: translateY(-1px);
 }
@@ -551,6 +553,163 @@ background-color: #fff4d9;
 color: #e69a00;
 }
 
+.application-background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.application-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;
+}
+
+.application-container-modal {
+    background-color: white;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+.application-container-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.application-container-modal form fieldset {
+    border: 1px solid #ddd;
+    padding: 7px;
+    border-radius: 8px;
+}
+
+.application-container-modal form fieldset legend {
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.application-container-modal form fieldset input {
+    width: 100%;
+    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.application-container-modal form fieldset input:focus {
+    border-color: #8b5cf6;
+}
+
+.application-container-modal form fieldset select {
+    width: 100%;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.application-container-modal form fieldset input:focus {
+    border-color: #8b5cf6;
+}
+
+.application-header-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.application-header-container p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: rgba(20, 18, 31, 0.495);
+}
+
+.application-header-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.exit-application {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f0ff;
+    color: #7676f7;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.exit-application:hover {
+    background-color: #7676f7;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.application-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.application-cancel {
+    font-size: 14px;
+    border: none;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    color: rgba(20, 18, 31, 0.495);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.application-error {
+    font-size: 12px;
+    color: red;
+    font-family: 'Poppins', sans-serif;
+}
+
+.application-success {
+    font-size: 12px;
+    color: green;
+    font-family: 'Poppins', sans-serif;
+}
+
+.application-save {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(118, 118, 247);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+}
+
 @media (max-width: 1100px) {
 .main-content {
 padding: 25px;
@@ -583,7 +742,7 @@ padding: 20px;
     gap: 15px;
 }
 
-.profile-container a {
+.profile-container button {
     padding: 9px 12px;
 }
 

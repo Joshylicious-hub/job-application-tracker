@@ -55,6 +55,19 @@ function validateRegistration(req, res, next) {
     next();
 }
 
+function validateApplication(req, res, next) {
+
+    const { company, position, status, dateApplied, step} = req.body;
+
+     if(!company || !position || !status || !dateApplied || !step) {
+         return res.status(400).json({
+            message: "Please complete the fields to continue"
+        })
+    }
+
+    next();
+}
+
 module.exports = {
-    validateLogin, validateRegistration, validateToken
+    validateLogin, validateRegistration, validateToken, validateApplication
 }
