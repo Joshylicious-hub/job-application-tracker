@@ -172,6 +172,10 @@ aside {
     flex-direction: column;
     gap: 15px;
 }
+.login-error {
+    font-size: 12px;
+    color: red;
+}
 .login-form button {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -301,6 +305,14 @@ aside {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+.registration-error {
+    font-size: 12px;
+    color: red;
+}
+.registration-success {
+    font-size: 12px;
+    color: green;
 }
 .register-form button {
     padding-top: 12px;

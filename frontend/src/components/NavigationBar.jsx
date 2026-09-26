@@ -21,6 +21,7 @@ function NavigationBar() {
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [ loginError, setLoginError ] = useState("");
 
     const sendLogin = async (e) => {
 
@@ -29,12 +30,13 @@ function NavigationBar() {
         try {
 
             if(!email || !password) {
-                console.error('Please complete the fields to continue');
+                setLoginError('Please complete the fields to continue');
                 return;
             }
 
             const response = await fetch('http://localhost:3000/api/user/login', {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 }, 
@@ -47,7 +49,7 @@ function NavigationBar() {
             const data = await response.json();
 
             if(!response.ok) {
-                console.error(data.message);
+                setLoginError(data.message);
                 return;
             }
 
@@ -98,7 +100,54 @@ function NavigationBar() {
         setOpenRegister(false);
     }
 
-   
+   const [ firstName, setFirstName ] = useState("");
+   const [ lastName, setLastName ] = useState("");
+   const [ registerEmail, setRegisterEmail ] = useState("");
+   const [ registerPassword, setRegisterPassword ] = useState("");
+   const [ registrationError, setRegistrationError ] = useState("");
+   const [ registrationSuccess, setRegistrationSuccess ] = useState("");
+
+   const sendRegistration = async (e) => {
+
+        e.preventDefault();
+
+        setRegistrationError("");
+        setRegistrationSuccess("");
+
+        try {
+
+            if(!firstName || !lastName || !registerEmail || !registerPassword) {
+                setRegistrationError("Please complete the fields to proceed.");
+                return;
+            }
+
+            const response = await fetch('http://localhost:3000/api/user/register', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: registerEmail,
+                    password: registerPassword,
+                    firstName: firstName,
+                    lastName: lastName
+                })
+            });
+
+            const data = await response.json();
+
+            if(!response.ok) {
+                setRegistrationError(data.message);
+                return;
+            }
+
+            setRegistrationSuccess(data.message);
+
+        }catch(err) {
+            console.error(err.message);
+            setRegistrationError(err.message);
+        }
+   }
 
     return (
         <>
@@ -129,10 +178,10 @@ function NavigationBar() {
                     <FcGoogle size={24} />
                     Continue with Google
                     </Link>
-                    <div class="divider">
-                        <div class="line"></div>
+                    <div className="divider">
+                        <div className="line"></div>
                         <span>or</span>
-                        <div class="line"></div>
+                        <div className="line"></div>
                     </div>
                     <form className="login-form" onSubmit={sendLogin}>
                         <div className="input-container">
@@ -156,6 +205,7 @@ function NavigationBar() {
                             onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
+                        <p className="login-error">{loginError}</p>
                         <button type="submit">Log in</button>
                     </form>
                     <div className="register-account">
@@ -181,18 +231,20 @@ function NavigationBar() {
                     <FcGoogle size={24} />
                     Continue with Google
                     </Link>
-                    <div class="divider">
-                        <div class="line"></div>
+                    <div className="divider">
+                        <div className="line"></div>
                         <span>or</span>
-                        <div class="line"></div>
+                        <div className="line"></div>
                     </div>
-                    <form className="register-form" onSubmit={sendLogin}>
+                    <form className="register-form" onSubmit={sendRegistration}>
                         <div className="name-container">
                             <div className="user-name">
                                 <label>First name</label>
                                 <input
                                 type="text"
                                 placeholder='Example Adolf'
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                                 />
                             </div>
                             <div className="user-name">
@@ -200,6 +252,8 @@ function NavigationBar() {
                                 <input
                                 type="text"
                                 placeholder='Example Hitler'
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -209,8 +263,8 @@ function NavigationBar() {
                             type="email"
                             className="input-style"
                             placeholder="user@gmail.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={registerEmail}
+                            onChange={(e) => setRegisterEmail(e.target.value)}
                             required
                             />
                         </div>
@@ -221,12 +275,14 @@ function NavigationBar() {
                             type="password"
                             className="input-style"
                             placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={registerPassword}
+                            onChange={(e) => setRegisterPassword(e.target.value)}
                             minLength={8}
                             />
-                            <p>Use at least 8 characters.</p>
                         </div>
+                        <p className={registrationError ? "registration-error" : "registration-success"}>
+                            {registrationError || registrationSuccess}
+                        </p>
                         <button type="submit">Register</button>
                     </form>
                     <div className="login-account">

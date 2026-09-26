@@ -6,71 +6,15 @@ import { useEffect, useState } from 'react';
 
 function DashBoard() {
 
-const [ userData, setUserData ] = useState([]);
+const [ userData, setUserData ] = useState({});
 const [ application, setApplication ] = useState([]);
-
-useEffect(() => {
-
-    const getProfile = async () => {
-
-    try {
-        const response = await fetch('http://localhost:3000/api/user/profile', {
-        credentials: "include"
-    });
-
-    const data = await response.json();
-
-    if(!response.ok) {
-        console.error(data.message);
-        return;
-    }
-
-    setUserData(data);
-    }catch(err) {
-        console.error(err);
-    }
-
-    }
-
-getProfile();
-
-}, []);
-
-useEffect(() => {
-
-    const getApplication = async () => {
-
-        try {
-
-            const response = await fetch('http://localhost:3000/api/user/application', {
-                credentials: "include"
-            });
-
-            const data = await response.json();
-
-            if(!response.ok) {
-                console.error(data.message);
-                return;
-            }
-
-            setApplication(data);
-
-        }catch(err) {
-            console.log(`Frontend Error: ${err.message}`);
-        }
-
-    }
-
-    getApplication();
-
-}, []);
 
 
 const total = application.length;
-const pending = application.filter((data) => data.job_status === "Pending").length;
-const interview = application.filter((data) => data.job_status === "Interview").length;
-const offered = application.filter((data) => data.job_status === "Offered").length;
-const rejected = application.filter((data) => data.job_status === "Rejected").length;
+const pending = application.filter((data) => data.status === "Pending").length;
+const interview = application.filter((data) => data.status === "Interview").length;
+const offered = application.filter((data) => data.status === "Offered").length;
+const rejected = application.filter((data) => data.status === "Rejected").length;
 
 const pendingPercent = total ? (pending / total) * 100 : 0;
 const interviewPercent = total ? (interview / total) * 100 : 0;
@@ -82,6 +26,69 @@ const interviewEnd = pendingEnd + interviewPercent;
 const offeredEnd = interviewEnd + offeredPercent;
 const rejectedEnd = offeredEnd + rejectedPercent;
 
+useEffect(() => {
+
+    async function getUserName() {
+
+        try {
+
+            const response = await fetch('http://localhost:3000/api/user/name', {
+                method: "GET",
+                credentials: "include"
+            })
+
+            const data = await response.json();
+
+            if(!response.ok) {
+                console.error(data.message);
+                return;
+            }
+
+            setUserData(data);
+
+
+        }catch(err) {
+            console.log(err.message);
+        }
+
+    }
+
+    getUserName();
+}, [])
+
+useEffect(() => {
+
+    async function getApplications() {
+        
+        try {
+
+            const response = await fetch('http://localhost:3000/api/user/application', {
+                credentials: "include"
+            });
+
+            const data = await response.json();
+
+            if(!response.ok) {
+                console.log(data.message);
+                return;
+            }
+
+            setApplication(data);
+
+        }catch(err) {
+            console.error(err.message);
+        }
+    }
+
+    getApplications();
+
+}, []);
+
+const capitalize = (name) => {
+    if (!name) return "";
+    return name.charAt(0).toUpperCase() + name.slice(1);
+};
+
     return (
         <>
             <section className=" dashboard">
@@ -90,7 +97,7 @@ const rejectedEnd = offeredEnd + rejectedPercent;
                 <main className="main-content border">
                    <div className="border profile">
                     <div className="border">
-                        <h2>Welcome, {userData[0]?.first_name} {userData[0]?.last_name}</h2>
+                        <h2>Welcome, {capitalize(userData.firstName)} {capitalize(userData.lastName)}</h2>
                         <p>Here's what happening with your job search today.</p>
                     </div>
                     <div className="profile-container">
@@ -119,7 +126,7 @@ const rejectedEnd = offeredEnd + rejectedPercent;
                         <div className="status">
                             <p>In Progress</p>
                             <h3>
-                                {application.filter((data) => data.job_status === "Pending").length}
+                                {application.filter((data) => data.status === "Pending").length}
                             </h3>
                             <p>Total Applied</p>
                             <p>This Week</p>
@@ -131,7 +138,7 @@ const rejectedEnd = offeredEnd + rejectedPercent;
                         </div>
                         <div className="status">
                             <p>Interviews</p>
-                            <h3>{application.filter((data) => data.job_status === "Interview").length}</h3>
+                            <h3>{application.filter((data) => data.status === "Interview").length}</h3>
                             <p>Total Applied</p>
                             <p>This Week</p>
                         </div>
@@ -142,7 +149,7 @@ const rejectedEnd = offeredEnd + rejectedPercent;
                         </div>
                         <div className="status">
                             <p>Offers</p>
-                            <h3>{application.filter((data) => data.job_status === "Offered").length}</h3>
+                            <h3>{application.filter((data) => data.status === "Offered").length}</h3>
                             <p>Total Applied</p>
                             <p>This Week</p>
                         </div>
@@ -153,7 +160,7 @@ const rejectedEnd = offeredEnd + rejectedPercent;
                         </div>
                         <div className="status">
                             <p>Rejected</p>
-                            <h3>{application.filter((data) => data.job_status === "Rejected").length}</h3>
+                            <h3>{application.filter((data) => data.status === "Rejected").length}</h3>
                             <p>Total Applied</p>
                             <p>This Week</p>
                         </div>
@@ -236,31 +243,40 @@ const rejectedEnd = offeredEnd + rejectedPercent;
 
                     <div className="overview-contain">
                         <div className="border overview-container">
-                            <p>Upcoming Events</p>
-                            <p>View Calendar</p>
+                            <p>Interview Schedule</p>
+                            <p>View Details</p>
                         </div>
+
                         <div className="statistics">
-                            <div>
-                                <h3>24</h3>
-                                <p>Total</p>
+                            <div className="interview-company">
+                                <h3>ABC Technologies</h3>
+                                <p>Software Developer</p>
                             </div>
-                            <div>
-                                <p>Applied</p>
-                                <p>In Progress</p>
-                                <p>Interviews</p>
-                                <p>Offers</p>
-                                <p>Rejected</p>
+
+                            <div className="interview-details">
+                                <div>
+                                    <p>Date</p>
+                                    <p>May 27, 2026</p>
+                                </div>
+
+                                <div>
+                                    <p>Time</p>
+                                    <p>10:00 AM - 11:00 AM</p>
+                                </div>
+
+                                <div>
+                                    <p>Location</p>
+                                    <p>Google Meet</p>
+                                </div>
                             </div>
-                            <div>
-                                <p>24 (50%)</p>
-                                <p>8 (16.7%)</p>
-                                <p>3 (12.5%)</p>
-                                <p>1 (4.2%)</p>
-                                <p>12 (25%)</p>
+
+                            <div className="interview-status">
+                                <p>Interview with HR Department</p>
+                                <span>Upcoming</span>
                             </div>
                         </div>
                     </div>
-                   </div>
+                </div>
 
                    <div className="border applications">
                         <div className="applications-contain">
@@ -279,24 +295,24 @@ const rejectedEnd = offeredEnd + rejectedPercent;
                                     <p>Next Step</p>
                                 </div>
 
-                                {application.map((data, index) => (
-                                    index < 2 && (
-                                         <div className="application-row" key={data.index}>
+                                {application.slice(-5).reverse().map((data, index) => (
+                                    index < 5 && (
+                                         <div className="application-row" key={data.id}>
                                             <p>{data.company}</p>
-                                            <p>{data.job_title}</p>
+                                            <p>{data.position}</p>
                                             <p>
-                                            <span className="status-interview">
-                                                {data.job_status}
+                                            <span className={`status-${data.status.toLowerCase()}`}>
+                                                {data.status}
                                             </span>
                                             </p>
-                                            <p> {new Date(data.date_applied).toLocaleDateString('en-US', {
+                                            <p> {new Date(data.date).toLocaleDateString('en-US', {
                                                 month: 'short',
                                                 day: 'numeric',
                                                 year: 'numeric'
                                             })}
                                             </p>
                                             <p>
-                                            HR Interview
+                                            {data.step}
                                             <small>May 27</small>
                                             </p>
                                         </div>
