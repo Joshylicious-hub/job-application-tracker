@@ -220,7 +220,7 @@
     width: 100%;
     max-width: 1500px;
 }
-.application-container {
+.application-container-landing {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -552,6 +552,7 @@
         flex-direction: column;
         justify-content: center;
         height: auto;
+        gap: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
     }
@@ -567,8 +568,15 @@
         justify-content: center;
         align-items: center;
     }
+    .ai-headers h2{
+        text-align: center;
+    }
+
+    .ai-headers p {
+        text-align: center;
+    }   
     .platform-features {
-        gap: 30px;
+        gap: 50px;
         flex-direction: column;
     }
     .steps-img {
@@ -576,13 +584,20 @@
     }
     .simple-steps-container {
         flex-direction: column;
+        gap: 50px;
     }   
+    .simple-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
     .steps-container {
         flex-direction: column;
         justify-content: center;
         height: auto;
         padding-top: 50px;
         padding-bottom: 50px;
+        gap: 50px;
     }
     .steps-headers h6 {
         text-align: center;
@@ -596,6 +611,7 @@
         height: auto;
         padding-top: 50px;
         padding-bottom: 50px;
+        gap: 30px;
     }
     .application-description h6 {
         text-align: center;
@@ -617,5 +633,29 @@
     .get-started {
         flex-direction: column;
         gap: 30px;
+    }
+
+    .application-container-landing {
+        gap: 50px;
+    }
+
+    .facts {
+        gap: 20px;
+    }
+
+    .testimonial-headers {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .testimonial-headers h1 {
+        text-align: center;
+    }
+
+    .steps-headers {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 }

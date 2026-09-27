@@ -65,6 +65,7 @@ border: none;
 .dashboard {
 display: flex;
 min-height: 100vh;
+padding-left: 230px;
 background-color: #f6f7fb;
 }
 

@@ -98,7 +98,7 @@ function MainPage() {
                             <h1>Get Hired in 4 Simple Steps</h1>
                         </div>
                         <div className="simple-steps-container">
-                            <div>
+                            <div className="simple-steps">
                                 <div className="simple-container">
                                     <span>1</span>
                                     <div className="simple-headers">
@@ -114,7 +114,7 @@ function MainPage() {
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div className="simple-steps">
                                  <div className="simple-container">
                                     <span>3</span>
                                     <div className="simple-headers">
@@ -141,7 +141,7 @@ function MainPage() {
                         <div>
                             <img src={application} className="application-img"/>
                         </div>
-                        <div className="application-container">
+                        <div className="application-container-landing">
                             <div className="application-description">
                                 <h6>WHY CHOOSE JOBTRACK AI</h6>
                                 <h1>More than Just a Job Search</h1>

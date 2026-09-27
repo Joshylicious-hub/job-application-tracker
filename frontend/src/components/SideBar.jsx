@@ -5,7 +5,7 @@ function SideBar() {
 
     return (
         <>
-          <nav className="side-bar">
+          <aside className="side-bar">
             <h1>JobTrack <span>AI</span></h1>
             <ul>
                 <li><Link to='/home'>Dashboard</Link></li>
@@ -20,7 +20,7 @@ function SideBar() {
                 <p>Joshua Andres</p>
                 <p>joshua@gmail.com</p>
             </div>
-        </nav>  
+        </aside>  
         </>
     )
 }

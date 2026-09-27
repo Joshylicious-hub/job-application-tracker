@@ -1,7 +1,10 @@
 
 .side-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 230px;
-    min-height: 100vh;
+    height: 100vh;
     padding: 25px 18px;
     background-color: #ffffff;
     border-right: 1px solid #eeeeee;
@@ -10,13 +13,17 @@
 }
 
 .side-bar h1 {
+    font-family: 'Poppins', sans-serif;
     margin: 5px 10px 35px;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .side-bar h1 span {
      color: #6d4aff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .side-bar ul {
