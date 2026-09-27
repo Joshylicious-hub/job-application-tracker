@@ -68,6 +68,19 @@ function validateApplication(req, res, next) {
     next();
 }
 
+function validateChatBot(req, res, next) {
+
+    const { chat } = req.body;
+
+    if(!chat) {
+        return res.status(400).json({
+            message: "Please send a message."
+        });
+    }
+
+    next();
+}
+
 module.exports = {
-    validateLogin, validateRegistration, validateToken, validateApplication
+    validateLogin, validateRegistration, validateToken, validateApplication, validateChatBot
 }

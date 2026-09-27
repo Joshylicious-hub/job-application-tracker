@@ -24,7 +24,7 @@ function ChatBotPage() {
 
             setMessage("");
 
-            const response = await fetch('http://localhost:3000/api/user/openai', {
+            const response = await fetch('http://localhost:3000/api/user/chatbot', {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -34,8 +34,6 @@ function ChatBotPage() {
                     chat: message
              })
           })
-
-          
 
           const data = await response.json();
 
