@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import  banner  from '../assets/banner.jpg';
 import  dashboard  from '../assets/dashboard.png';
-import  steps  from '../assets/steps.png';
+import  steps  from '../assets/steps (2).png';
 import  application  from '../assets/application.png';
 import picture from '../assets/joshuagrad.jpg';
 import './MainPage.css'

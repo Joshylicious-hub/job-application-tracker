@@ -5,6 +5,7 @@
     min-height: 0;
     overflow: hidden;
     background: white;
+    padding-left: 230px;
 }
 
 .chatbot-contain {
@@ -646,7 +647,8 @@
     cursor: pointer;
 }
 
-@media (max-width: 1000px) {
+
+@media (min-width: 768px) and (max-width: 1024px) {
 
     .chatbot-contain {
         padding: 15px;
@@ -656,18 +658,17 @@
         width: 260px;
         min-width: 240px;
     }
-
-}
-
-@media (max-width: 800px) {
-
     .quick-action {
         display: none;
     }
 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
+
+    .title-left {
+        padding-left: 30px;
+    }
 
     .chatbot-contain {
         padding: 10px;
@@ -680,10 +681,20 @@
     .title-buttons button {
         width: 34px;
         height: 34px;
+        display: none;
     }
 
     .chatbot-header {
         padding: 8px;
     }
+
+    .chatbot-container {
+        padding-left: 0px;
+    }
+
+    .quick-action {
+        display: none;
+    }
+    
 
 }

@@ -49,6 +49,29 @@ footer header p {
     font-weight: 400;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+   footer {
+    flex-direction: column;
+    height: auto;
+    padding: 50px;
+    padding-bottom: 50px;
+    align-items: center;
+    gap: 50px;
+   }
+
+   footer ul {
+    align-items: center;
+   }
+
+   footer header h1 {
+    text-align: center;
+   }
+
+   .social-medias h2 {
+    text-align: center;
+   }
+}
+
 @media (max-width: 767px) {
     footer {
         flex-direction: column;

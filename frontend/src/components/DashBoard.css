@@ -602,10 +602,10 @@ color: #e69a00;
 
 .application-container-modal form fieldset input {
     width: 100%;
-    padding: 5px 10px;
+    padding-left: 5px;
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    border: 1px solid #ccc;
+    font-size: 16px;
+    border: none;
     border-radius: 6px;
     box-sizing: border-box;
     outline: none;
@@ -619,9 +619,8 @@ color: #e69a00;
     width: 100%;
     padding: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    font-size: 16px;
+    border: none;
     box-sizing: border-box;
     outline: none;
 }
@@ -711,7 +710,7 @@ color: #e69a00;
     font-weight: 500;
 }
 
-@media (max-width: 1100px) {
+@media (min-width: 768px) and (max-width: 1024px) {
 .main-content {
 padding: 25px;
 }
@@ -732,29 +731,48 @@ padding: 25px;
 
 }
 
-@media (max-width: 700px) {
+@media (max-width: 767px) {
 .main-content {
-padding: 20px;
+padding-left: 30px;
+padding-right: 30px;
+padding-top: 70px;
+padding-bottom: 50px;
+gap: 30px;
 }
 
+.dashboard {
+    padding-left: 0px;
+}
 
 .profile {
     align-items: flex-start;
     gap: 15px;
+    flex-direction: column;
 }
 
 .profile-container button {
     padding: 9px 12px;
 }
 
+.profile-container {
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+
 .card {
-    min-width: 100%;
+    display: none;
+}
+.card-container {
+    display: none;
 }
 
 .overview {
     flex-direction: column;
+    gap: 30px;
 }
-
+.statistics-container {
+    gap: 30px;
+}
 .statistics {
     gap: 15px;
 }
@@ -765,6 +783,11 @@ padding: 20px;
 
 .applications-table {
     min-width: 600px;
+}
+
+.application-container-modal {
+    height: 100vh;
+    border-radius: 0px;
 }
 
 }

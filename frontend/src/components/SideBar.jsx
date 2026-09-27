@@ -1,7 +1,20 @@
 import './SideBar.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function SideBar() {
+
+    const [ openDashboard, setOpenDashboard ] = useState(false);
+
+    const openDashboardSideBar = () => {
+
+        if(openDashboard === false) {
+            setOpenDashboard(true);
+            return;
+        }
+
+        setOpenDashboard(false);
+    }
 
     return (
         <>
@@ -11,16 +24,31 @@ function SideBar() {
                 <li><Link to='/home'>Dashboard</Link></li>
                 <li><Link to='/chatbot'>AI Assistant</Link></li>
                 <li><Link>Applications</Link></li>
-                <li><Link>Calendar</Link></li>
-                <li><Link>Documents</Link></li>
-                <li><Link>Statistics</Link></li>
-                <li><Link>Settings</Link></li>
             </ul>
             <div className="user-log">
                 <p>Joshua Andres</p>
                 <p>joshua@gmail.com</p>
             </div>
         </aside>  
+
+        <button className="side-bar-burger" onClick={openDashboardSideBar}><span>☰</span></button>
+
+        {openDashboard && (
+            <div className="background-dashboard-side">
+                <aside className="side-bar-dashboard">
+                <h1>JobTrack <span>AI</span></h1>
+                <ul>
+                    <li><Link to='/home'>Dashboard</Link></li>
+                    <li><Link to='/chatbot'>AI Assistant</Link></li>
+                    <li><Link>Applications</Link></li>
+                </ul>
+                <div className="user-log">
+                    <p>Joshua Andres</p>
+                    <p>joshua@gmail.com</p>
+                </div>
+            </aside>
+        </div>  
+        )}
         </>
     )
 }

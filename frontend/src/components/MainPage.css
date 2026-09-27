@@ -154,6 +154,7 @@
     height: 90vh;
     padding-left: 50px;
     padding-right: 50px;
+    gap: 50px;
 }
 .steps-headers h6{
     color: rgb(118, 118, 247);
@@ -173,11 +174,17 @@
 }
 .simple-steps-container {
     display: flex;
+    gap: 50px;
 }
 .simple-container {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+.simple-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 }
 .simple-headers h2 {
     font-size: 18px;

@@ -54,3 +54,83 @@
     color: #6d4aff;
     font-weight: 600;
 }
+
+.side-bar-burger {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .side-bar {
+        display: none;
+    }
+
+    .side-bar-burger {
+        display: block;
+    }
+
+    .side-bar-dashboard {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        display: block;
+        display: flex;
+        z-index: 9999;
+    }
+
+    .side-bar-dashboard h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    align-self: center;
+    }
+
+    .side-bar-dashboard h1 span {
+        color: #6d4aff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .side-bar-dashboard ul {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        list-style: none;
+    }
+
+    .side-bar-dashboard ul li a {
+        display: block;
+        padding: 11px 13px;
+        text-decoration: none;
+        color: #555;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: 0.2s;
+        width: 100%;
+    }
+
+    .side-bar-dashboard ul li a:hover {
+        background-color: #f1edff;
+        color: #6d4aff;
+    }
+
+    .side-bar-dashboard ul li:first-child a {
+        background-color: #eee9ff;
+        color: #6d4aff;
+        font-weight: 600;
+    }
+
+
+    .background-dashboard-side {
+        background-color: rgba(0, 0, 0, 0.6);
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+    }
+
+    .user-log {
+        width: 100%;
+        
+    }
+    
+}
