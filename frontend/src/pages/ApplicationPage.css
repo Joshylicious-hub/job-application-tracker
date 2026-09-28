@@ -1,0 +1,117 @@
+.dashboard-application {
+    min-height: 100vh;
+    padding-left: 230px;
+    background-color: #f6f7fb;
+}
+
+.application-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.application-container {
+    width: 100%;
+    height: auto;
+}
+
+.applications-contain-dashboard {
+width: 100%;
+background-color: white;
+border: 1px solid #eeeeee;
+padding: 18px;
+border-radius: 18px;
+box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+overflow-y: scroll;
+}
+
+
+.applications-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 14px;
+}
+
+.applications-header p:first-child {
+font-size: 14px;
+font-weight: 700;
+color: #222;
+}
+
+.applications-header p:last-child {
+font-size: 10px;
+font-weight: 600;
+color: #6d4aff;
+cursor: pointer;
+}
+
+.applications-table {
+    width: 100%;
+}
+
+.application-row {
+display: flex;
+align-items: center;
+width: 100%;
+min-height: 48px;
+border-bottom: 1px solid #f0f0f0;
+}
+
+.application-row:last-child {
+border-bottom: none;
+}
+
+.application-row p:nth-child(1) {
+flex: 1;
+}
+
+.application-row p:nth-child(2) {
+flex: 1.5;
+}
+
+.application-row p:nth-child(3) {
+flex: 1;
+}
+
+.application-row p:nth-child(4) {
+flex: 1.2;
+}
+
+.application-row p:nth-child(5) {
+flex: 1.4;
+}
+
+.application-row p {
+text-align: center;
+margin: 0;
+font-size: 11px;
+color: #555;
+}
+
+.application-header {
+min-height: 35px;
+border-bottom: 1px solid #e5e5e5;
+}
+
+.application-header p {
+text-align: center;
+font-size: 9px;
+font-weight: 600;
+color: #999;
+text-transform: uppercase;
+}
+
+.application-row p:last-child {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 3px;
+}
+
+.application-row small {
+font-size: 9px;
+color: #999;
+}

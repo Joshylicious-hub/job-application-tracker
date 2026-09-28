@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage';
 import UserDetailPage from './pages/UserDetailPage';
 import HomePage from './pages/HomePage';
 import ChatBotPage from './pages/ChatBotPage';
+import ApplicationPage from './pages/ApplicationPage';
 
 function App() {
 
@@ -44,6 +45,12 @@ function App() {
           <Route
           path="/chatbot"
           element={<ChatBotPage/>}
+          >
+          </Route>
+
+          <Route
+          path="/application"
+          element={<ApplicationPage/>}
           >
           </Route>
           

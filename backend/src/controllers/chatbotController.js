@@ -71,22 +71,20 @@ async function chatBot(req, res) {
 
             The allowed statuses are:
 
-            * Applied
-            * Interviewing
+            * Pending
+            * Interview
             * Offer
             * Rejected
-            * Withdrawn
-
+            
             The total of all status counts should equal the total number of application records.
 
             Example:
             If there are:
 
-            * 77 Applied
+            * 77 Pending
             * 18 Rejected
-            * 2 Interviewing
+            * 2 Interview
             * 1 Offer
-            * 1 Withdrawn
 
             Then the total is 99 applications.
 
@@ -118,17 +116,59 @@ async function chatBot(req, res) {
 
             INSERT INTO applications (foreign_id, company, position, status, date, step) VALUES (${id}, 'company', 'position', 'status', 'date', 'step')
 
-            ## Formatting rules for inserted values
+            ## Updating a job status
+
+            When the user asks to update job status:
+
+            * company name
+            * position
+            * status
+
+            If any of these are missing or unclear, ask the user conversationally for only the missing information. Do not proceed until the company name, position and status were given.
+            If the user provide a wrong company name or position in capitalization or wrong spelling. I want you to fix it example: User: online Thinkers you match the spelling in the database like Online Thinkers.
+            Once provided, respond with ONLY this SQL statement, nothing else and no code fences:
+
+            UPDATE applications SET status = 'status' WHERE foreign_id = ${id} AND company = 'company' AND position = 'position'
+
+            ## Updating a job step
+
+            When the user asks to update job step:
+
+            * company name
+            * position
+            * step
+
+            If any of these are missing or unclear, ask the user conversationally for only the missing information. Do not proceed until the company name, position and step were given.
+            If the user provide a wrong company name, position and step in capitalization or wrong spelling. I want you to fix it example: User: online Thinkers you match the spelling in the database like Online Thinkers.
+            Remind to match this for the record: Not Available, HR Interview, Technical Interview, Final Interview.
+            Once provided, respond with ONLY this SQL statement, nothing else and no code fences:
+
+            UPDATE applications SET step = 'step' WHERE foreign_id = ${id} AND company = 'company' AND position = 'position'
+
+            ## Deleting a job application
+
+            When the user asks to delete job applications:
+
+            * company name
+            * position
+
+            If any of these are missing or unclear, ask the user conversationally for only the missing information. Do not proceed until the company name, and position were given.
+            If the user provide a wrong company name or position in capitalization or wrong spelling. I want you to fix it example: User: online Thinkers you match the spelling in the database like Online Thinkers.
+            Remind to match this for the record: Not Available, HR Interview, Technical Interview, Final Interview.
+            Once provided, respond with ONLY this SQL statement, nothing else and no code fences:
+
+            DELETE FROM applications WHERE foreign_id = ${id} AND company = 'company' AND position = 'position'
+
+            ## Formatting rules for values
 
             * company, position, and step: Title Case — capitalize the first letter of every word.
             Example: "online thinkers" -> "Online Thinkers".
 
             * status: Normalize to exactly one of:
-            Applied
-            Interviewing
+            Pending
+            Interview
             Offer
             Rejected
-            Withdrawn
 
             If the user's phrasing does not clearly map to one of these statuses, ask which status they mean.
 
@@ -152,10 +192,59 @@ async function chatBot(req, res) {
         await db.query("INSERT INTO chat_history (chatbot, user, foreign_id) VALUES (?, ?, ?)", [ response.output_text, chat, id ]);
 
         if(response.output_text.includes("INSERT INTO applications")) {
-            await db.query(response.output_text);
-            return res.status(201).json({
-                message: "Application have been inserted. Want to insert more?"
-            })
+            try {
+                await db.query(response.output_text);
+                return res.status(201).json({
+                    message: "Application have been inserted. Want to insert more?"
+                })
+
+            }catch(err) {
+                return res.status(500).json({
+                    message: `Query Error: ${err.message}`
+                })
+            }
+        }
+
+        if(response.output_text.includes("UPDATE applications SET status")) {
+             try {
+                await db.query(response.output_text);
+                return res.status(200).json({
+                    message: "Your application status has been updated. Want me to update more?"
+                })
+
+            }catch(err) {
+                return res.status(500).json({
+                    message: `Query Error: ${err.message}`
+                })
+            }
+        }
+
+        if(response.output_text.includes("UPDATE applications SET step")) {
+            try {
+                await db.query(response.output_text);
+                return res.status(200).json({
+                    message: "Your application step has been updated. Want me to update more?"
+                })
+
+            }catch(err) {
+                return res.status(500).json({
+                    message: `Query Error: ${err.message}`
+                })
+            }
+        }
+
+        if(response.output_text.includes("DELETE FROM applications")) {
+            try {
+                await db.query(response.output_text);
+                return res.status(200).json({
+                    message: "The application has been deleted. Want me to delete more?"
+                })
+
+            }catch(err) {
+                return res.status(500).json({
+                    message: `Query Error: ${err.message}`
+                })
+            }
         }
  
         res.status(200).json({

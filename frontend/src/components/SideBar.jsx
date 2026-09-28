@@ -23,7 +23,7 @@ function SideBar() {
             <ul>
                 <li><Link to='/home'>Dashboard</Link></li>
                 <li><Link to='/chatbot'>AI Assistant</Link></li>
-                <li><Link>Applications</Link></li>
+                <li><Link to='/application'>Applications</Link></li>
             </ul>
             <div className="user-log">
                 <p>Joshua Andres</p>
@@ -40,7 +40,7 @@ function SideBar() {
                 <ul>
                     <li><Link to='/home'>Dashboard</Link></li>
                     <li><Link to='/chatbot'>AI Assistant</Link></li>
-                    <li><Link>Applications</Link></li>
+                    <li><Link to='/application'>Applications</Link></li>
                 </ul>
                 <div className="user-log">
                     <p>Joshua Andres</p>
